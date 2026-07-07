@@ -48,6 +48,5 @@
   - Типографика
   - UI/UX (база)
 - **Контакты** — ссылки на TikTok и YouTube
-https://TikTok-@26main10-000000?style=for-the-badge&logo=tiktok&logoColor=white
----
-https://YouTube-@bestik--name-FF0000?style=for-the-badge&logo=youtube&logoColor=white
+https://www.tiktok.com/@26main10?_r=1&_t=ZS-97pa9X3ahwi
+https://youtube.com/@bestik-name?si=tnrD1BfE1WzpWiIR
