@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Богдан — портфолио дизайнера</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: #f4f2ef;
+      color: #1c1c26;
+      scroll-behavior: smooth;
+    }
+
+    .site {
+      width: 100%;
+      padding: 0;
+      background: #ffffff;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    /* ----- ВСТУПЛЕНИЕ (на всю высоту экрана) ----- */
+    .intro-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4rem 6rem;
+      border-radius: 0;
+      margin-bottom: 2rem;
+      transition: opacity 0.2s ease;
+      will-change: opacity;
+      overflow: hidden;
+      background-color: #f0ece7;
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(2px);
+      z-index: 0;
+    }
+
+    .intro-text {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
+    .intro-text h1 {
+      font-size: 7rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #1c1c26;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-text h1 .highlight {
+      background: linear-gradient(145deg, #b67cf7, #7c8cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro-text .sub-p {
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #2a263a;
+      max-width: 800px;
+      line-height: 1.3;
+      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.3);
+      margin-bottom: 2rem;
+    }
+
+    /* ----- ЛЕТАЮЩИЕ ПЛАШКИ (возраст, опыт, профессия) ----- */
+    .floating-tags {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #1c1c26;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transform-origin: center;
+      animation: float 6s ease-in-out infinite alternate;
+      white-space: nowrap;
+    }
+
+    .floating-tag:nth-child(1) {
+      top: 15%;
+      left: 5%;
+      transform: rotate(-12deg);
+      animation-delay: 0s;
+    }
+
+    .floating-tag:nth-child(2) {
+      top: 25%;
+      right: 8%;
+      transform: rotate(8deg);
+      animation-delay: 1.5s;
+    }
+
+    .floating-tag:nth-child(3) {
+      bottom: 20%;
+      left: 12%;
+      transform: rotate(-5deg);
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(-12deg);
+      }
+      100% {
+        transform: translateY(-20px) rotate(-8deg);
+      }
+    }
+
+    .floating-tag:nth-child(2) {
+      animation-name: float2;
+    }
+
+    @keyframes float2 {
+      0% {
+        transform: translateY(0px) rotate(8deg);
+      }
+      100% {
+        transform: translateY(-18px) rotate(12deg);
+      }
+    }
+
+    .floating-tag:nth-child(3) {
+      animation-name: float3;
+    }
+
+    @keyframes float3 {
+      0% {
+        transform: translateY(0px) rotate(-5deg);
+      }
+      100% {
+        transform: translateY(-22px) rotate(-2deg);
+      }
+    }
+
+    /* ----- СЛАЙДЕР НАВЫКОВ ----- */
+    .skills-section {
+      padding: 1rem 2rem 3rem;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .skills-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .skills-header h2 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #b67cf7, #7c8cf8, #6c7ef0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 8px 24px rgba(124, 140, 248, 0.2);
+      display: inline-block;
+      position: relative;
+    }
+
+    .skills-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #b67cf7, #7c8cf8, transparent);
+      border-radius: 4px;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 2.5rem;
+      overflow-x: auto;
+      padding: 1.5rem 0.5rem 3rem 0.5rem;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #d6d0c8 #f0ede8;
+      cursor: grab;
+      overflow-y: visible;
+    }
+
+    .slider-track::-webkit-scrollbar {
+      height: 8px;
+    }
+    .slider-track::-webkit-scrollbar-track {
+      background: #f0ede8;
+      border-radius: 20px;
+    }
+    .slider-track::-webkit-scrollbar-thumb {
+      background: #d6d0c8;
+      border-radius: 20px;
+    }
+
+    /* ----- КАРТОЧКИ (увеличены в 1.8 раза) ----- */
+    .skill-card {
+      flex: 0 0 560px;
+      min-height: 600px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(4px);
+      border-radius: 48px;
+      padding: 3rem 2.5rem 2.5rem;
+      border: none;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      will-change: transform, box-shadow;
+      overflow: visible;
+    }
+
+    .skill-card .icon {
+      font-size: 5rem;
+      margin-bottom: 0.6rem;
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card h3 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #1c1c26;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-card .short-desc {
+      font-size: 1.5rem;
+      color: #5f5b6b;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-card .detail-desc {
+      font-size: 1.2rem;
+      color: #2d2a38;
+      line-height: 1.5;
+      background: rgba(240, 237, 232, 0.7);
+      backdrop-filter: blur(2px);
+      padding: 1rem 1.2rem;
+      border-radius: 20px;
+      margin-top: 0.4rem;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.4s ease, max-height 0.5s ease, margin 0.3s ease;
+      border-left: 4px solid #b9b0c9;
+    }
+
+    .skill-card:hover .detail-desc {
+      opacity: 1;
+      max-height: 280px;
+      margin-top: 1rem;
+    }
+
+    .skill-card .level {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 8px;
+    }
+
+    .skill-card .level span {
+      display: block;
+      width: 100%;
+      height: 8px;
+      background: #e3ded8;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .skill-card .level span.filled {
+      background: #b9b0c9;
+    }
+
+    /* Анимация наведения — объёмная, без обрезания */
+    .skill-card:hover {
+      transform: translateY(-18px) scale(1.08);
+      background: #ffffff;
+      box-shadow: 0 40px 80px -24px rgba(70, 50, 100, 0.35), 0 16px 32px -12px rgba(0, 0, 0, 0.06);
+      border: none;
+      z-index: 10;
+    }
+
+    .skill-card:hover .icon {
+      transform: scale(1.15) rotate(-4deg);
+    }
+
+    .skill-card:hover .level span.filled {
+      background: #8b7aa8;
+    }
+
+    /* ----- КОНТАКТНАЯ СЕКЦИЯ (тёмный фон, до самого низа) ----- */
+    .contact-section {
+      margin-top: 2rem;
+      padding: 3.5rem 4rem 3rem;
+      background: #1e1e2a;
+      border-radius: 0;
+      color: #f0ede8;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .contact-section .contact-text h2 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-section .contact-text p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      color: #f0ede8;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: background 0.25s, transform 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-links a:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-3px);
+    }
+
+    .contact-links a .emoji {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    /* ----- Затемнение снизу (мелкое) ----- */
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(30, 30, 42, 0.12), transparent);
+      z-index: 100;
+    }
+
+    /* ----- АДАПТИВ ----- */
+    @media (max-width: 1400px) {
+      .skill-card {
+        flex: 0 0 440px;
+        min-height: 480px;
+        padding: 2.5rem 2rem;
+      }
+      .skill-card .icon {
+        font-size: 4rem;
+      }
+      .skill-card h3 {
+        font-size: 2.4rem;
+      }
+      .skill-card .short-desc {
+        font-size: 1.3rem;
+      }
+      .intro-text h1 {
+        font-size: 5.5rem;
+      }
+      .intro-text .sub-p {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .intro-section {
+        padding: 3rem 3rem;
+        min-height: 80vh;
+      }
+      .intro-text h1 {
+        font-size: 4.5rem;
+      }
+      .intro-text .sub-p {
+        font-size: 1.8rem;
+      }
+      .skill-card {
+        flex: 0 0 360px;
+        min-height: 400px;
+        padding: 2rem 1.5rem;
+      }
+      .skill-card .icon {
+        font-size: 3.4rem;
+      }
+      .skill-card h3 {
+        font-size: 2rem;
+      }
+      .skill-card .short-desc {
+        font-size: 1.1rem;
+      }
+      .skills-header h2 {
+        font-size: 3.2rem;
+      }
+      .floating-tag {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-section {
+        padding: 2rem 1.5rem;
+        min-height: 70vh;
+      }
+      .intro-text h1 {
+        font-size: 3.2rem;
+      }
+      .intro-text .sub-p {
+        font-size: 1.4rem;
+      }
+      .skill-card {
+        flex: 0 0 280px;
+        min-height: 320px;
+        padding: 1.5rem 1.2rem;
+      }
+      .skill-card .icon {
+        font-size: 2.8rem;
+      }
+      .skill-card h3 {
+        font-size: 1.6rem;
+      }
+      .skill-card .short-desc {
+        font-size: 1rem;
+      }
+      .skill-card .detail-desc {
+        font-size: 0.9rem;
+      }
+      .skills-header h2 {
+        font-size: 2.4rem;
+      }
+      .floating-tag {
+        display: none;
+      }
+      .contact-section {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .contact-links {
+        width: 100%;
+      }
+      .contact-links a {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-text h1 {
+        font-size: 2.4rem;
+      }
+      .intro-text .sub-p {
+        font-size: 1.2rem;
+      }
+      .skill-card {
+        flex: 0 0 220px;
+        min-height: 260px;
+        padding: 1.2rem 1rem;
+      }
+      .skill-card h3 {
+        font-size: 1.3rem;
+      }
+      .skill-card .icon {
+        font-size: 2.2rem;
+      }
+      .skills-header h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+
+    <!-- ======= ВСТУПЛЕНИЕ (на весь экран) ======= -->
+    <section class="intro-section" id="intro">
+      <div class="intro-text">
+        <h1>
+          Привет! Я <span class="highlight">Богдан</span>
+        </h1>
+        <p class="sub-p">
+          Это моё портфолио, здесь я тебе скажу,<br />
+          какие варианты дизайна я знаю.
+        </p>
+      </div>
+
+      <!-- Летающие плашки -->
+      <div class="floating-tags">
+        <span class="floating-tag">🧑‍🎨 15 лет</span>
+        <span class="floating-tag">⏳ опыт 6 месяцев</span>
+        <span class="floating-tag">✏️ начинающий дизайнер</span>
+      </div>
+    </section>
+
+    <!-- ======= СЛАЙДЕР НАВЫКОВ ======= -->
+    <section class="skills-section">
+      <div class="skills-header">
+        <h2>Мой Арсенал</h2>
+      </div>
+
+      <div class="slider-track" id="skillsSlider">
+        <!-- Карточка 1 -->
+        <div class="skill-card">
+          <span class="icon">🎨</span>
+          <h3>Графический дизайн</h3>
+          <p class="short-desc">Логотипы, афиши, посты</p>
+          <div class="detail-desc">
+            Это создание визуальных образов для брендов, рекламы и соцсетей. Я делаю запоминающиеся логотипы, яркие афиши и карточки для постов.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="skill-card">
+          <span class="icon">🖌️</span>
+          <h3>Adobe Photoshop</h3>
+          <p class="short-desc">Коллажи, ретушь</p>
+          <div class="detail-desc">
+            Работаю с фото: могу объединить несколько изображений в один коллаж, убрать дефекты, настроить цвета для нужного настроения.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="skill-card">
+          <span class="icon">📐</span>
+          <h3>Figma</h3>
+          <p class="short-desc">Прототипы, макеты</p>
+          <div class="detail-desc">
+            Создаю макеты сайтов и приложений: от набросков до кликабельных прототипов. Умею собирать компоненты и работать с автолейаутами.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Карточка 4 -->
+        <div class="skill-card">
+          <span class="icon">✏️</span>
+          <h3>Иллюстрация</h3>
+          <p class="short-desc">Вектор, скетчи</p>
+          <div class="detail-desc">
+            Рисую персонажей, иконки, простые сюжеты. Могу сделать стикерпак или заставку для соцсетей.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Карточка 5 -->
+        <div class="skill-card">
+          <span class="icon">🧩</span>
+          <h3>Типографика</h3>
+          <p class="short-desc">Шрифты, вёрстка</p>
+          <div class="detail-desc">
+            Подбираю и сочетаю шрифты так, чтобы текст был удобным для чтения и красивым. Работаю с иерархией и ритмом текста.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Карточка 6 -->
+        <div class="skill-card">
+          <span class="icon">📱</span>
+          <h3>UI/UX (база)</h3>
+          <p class="short-desc">Адаптив, сценарии</p>
+          <div class="detail-desc">
+            Делаю интерфейсы, которые понятны пользователям: продумываю, куда нажать, как перейти, чтобы всё было удобно и интуитивно.
+          </div>
+          <div class="level">
+            <span class="filled"></span>
+            <span class="filled"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= КОНТАКТЫ ======= -->
+    <section class="contact-section">
+      <div class="contact-text">
+        <h2>Свяжись со мной</h2>
+        <p>Всегда открыт к новым проектам и знакомствам</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.tiktok.com/@26main10?_r=1&_t=ZS-97pa9X3ahwi" target="_blank">
+          <span class="emoji">📱</span> TikTok
+        </a>
+        <a href="https://youtube.com/@bestik-name?si=tnrD1BfE1WzpWiIR" target="_blank">
+          <span class="emoji">▶️</span> YouTube
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ======= JavaScript ======= -->
+  <script>
+    (function() {
+      // Исчезновение вступления при скролле
+      const intro = document.getElementById('intro');
+      if (intro) {
+        function updateIntroOpacity() {
+          const rect = intro.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(rect.bottom, windowHeight);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const totalHeight = rect.height;
+          let visiblePercent = totalHeight > 0 ? visibleHeight / totalHeight : 0;
+          let opacity = 1;
+          if (visiblePercent <= 0.25) {
+            opacity = 0;
+          } else if (visiblePercent < 1) {
+            opacity = (visiblePercent - 0.25) / 0.75;
+          }
+          opacity = Math.min(1, Math.max(0, opacity));
+          intro.style.opacity = opacity;
+        }
+        window.addEventListener('scroll', updateIntroOpacity, { passive: true });
+        window.addEventListener('resize', updateIntroOpacity, { passive: true });
+        updateIntroOpacity();
+      }
+
+      // Горизонтальный скролл колесиком (ускоренный)
+      const slider = document.getElementById('skillsSlider');
+      if (slider) {
+        slider.addEventListener('wheel', function(e) {
+          if (e.deltaY !== 0) {
+            e.preventDefault();
+            slider.scrollLeft += e.deltaY * 2.2; // повышенная чувствительность
+          }
+        }, { passive: false });
+      }
+    })();
+  </script>
+</body>
+</html>
