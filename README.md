@@ -50,3 +50,5 @@
 - **Контакты** — ссылки на TikTok и YouTube
 https://www.tiktok.com/@26main10?_r=1&_t=ZS-97pa9X3ahwi
 https://youtube.com/@bestik-name?si=tnrD1BfE1WzpWiIR
+
+Моя игра --- https://bagdychgeronin-code.github.io/Game/
