@@ -581,7 +581,7 @@
       animation: slideOutReview 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    /* ----- ИГРА (новая секция) ----- */
+    /* ----- ИГРА (секция) ----- */
     .game-section {
       max-width:1550px;
       margin:2rem auto 0;
@@ -688,12 +688,6 @@
       color:var(--text-primary);
       transition:color 0.4s ease;
     }
-    .game-card .game-links {
-      display:flex;
-      flex-wrap:wrap;
-      gap:1rem;
-      margin-top:0.5rem;
-    }
     .game-card .game-link {
       display:inline-flex;
       align-items:center;
@@ -709,26 +703,11 @@
       box-shadow:0 4px 16px rgba(124,140,248,0.3);
       border:none;
       cursor:pointer;
+      align-self:flex-start;
     }
     .game-card .game-link:hover {
       transform:scale(1.04);
       box-shadow:0 8px 28px rgba(124,140,248,0.4);
-    }
-    .game-card .bot-link {
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 4px 16px rgba(0,0,0,0.05);
-    }
-    .game-card .bot-link:hover {
-      background:rgba(255,255,255,0.15);
-      box-shadow:0 8px 24px rgba(0,0,0,0.1);
-    }
-    body.dark-theme .game-card .bot-link {
-      background:rgba(255,255,255,0.06);
-      border-color:rgba(255,255,255,0.05);
-    }
-    body.dark-theme .game-card .bot-link:hover {
-      background:rgba(255,255,255,0.12);
     }
 
     /* ----- контакты ----- */
@@ -782,18 +761,33 @@
 
     .contact-links {
       position:relative; z-index:1;
-      display:flex; gap:2rem; flex-wrap:wrap;
+      display:flex; gap:1.5rem; flex-wrap:wrap;
+      align-items:center;
     }
     .contact-links a {
       display:inline-flex; align-items:center; gap:0.8rem;
       background:rgba(255,255,255,0.08); padding:0.9rem 2.2rem;
       border-radius:60px; color:var(--contact-text); text-decoration:none;
-      font-weight:500; font-size:1.3rem;
+      font-weight:500; font-size:1.2rem;
       transition:background 0.25s, transform 0.2s, color 0.4s;
       border:1px solid rgba(255,255,255,0.05);
     }
     .contact-links a:hover { background:rgba(255,255,255,0.18); transform:translateY(-3px); }
-    .contact-links a .emoji { font-size:1.8rem; line-height:1; }
+    .contact-links a .emoji { font-size:1.6rem; line-height:1; }
+
+    /* Ссылка на бота — выделяется ярким градиентом и обводкой */
+    .contact-links .bot-link {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 16px rgba(124, 140, 248, 0.4);
+      font-weight: 700;
+    }
+    .contact-links .bot-link:hover {
+      background: linear-gradient(135deg, var(--gradient-end), var(--gradient-start));
+      transform: scale(1.05);
+      box-shadow: 0 8px 28px rgba(124, 140, 248, 0.6);
+    }
 
     .copy-toast {
       position:fixed; bottom:6rem; left:50%; transform:translateX(-50%);
@@ -857,7 +851,6 @@
       .level-helper .trigger { font-size:0.8rem; padding:0.5rem 1rem; }
       .helper-arrow.show { width: 140px; }
       .contact-details .item { font-size:1rem; padding:0.6rem 1.2rem; }
-      .game-card .game-links { flex-direction:column; align-items:stretch; }
     }
     @media (max-width:768px) {
       .intro-section { padding:2rem 1.5rem; min-height:70vh; }
@@ -871,8 +864,8 @@
       .skills-header h2, .portfolio-header h2, .game-header h2 { font-size:2.6rem; }
       .floating-tag { display:none; }
       .contact-section { padding:2rem 1.5rem; flex-direction:column; align-items:flex-start; }
-      .contact-links { width:100%; }
-      .contact-links a { flex:1; justify-content:center; }
+      .contact-links { width:100%; flex-direction:column; align-items:stretch; }
+      .contact-links a { justify-content:center; }
       .contact-section .bg-icons { font-size:4rem; opacity:0.05; }
       .slider-wrapper::before, .slider-wrapper::after,
       .portfolio-content::before, .portfolio-content::after { width:20px; }
@@ -887,7 +880,6 @@
       .game-card .game-info .game-controls { font-size:0.85rem; padding:0.8rem 1rem; }
       .level-helper { display:none; }
       .contact-details .item { font-size:0.9rem; padding:0.5rem 1rem; }
-      .game-card .game-links .game-link { font-size:1rem; padding:0.7rem 1.5rem; }
     }
     @media (max-width:480px) {
       .intro-text h1 { font-size:2.4rem; }
@@ -1064,7 +1056,7 @@
       </div>
     </section>
 
-    <!-- ======= НОВАЯ СЕКЦИЯ С ИГРОЙ ======= -->
+    <!-- ======= СЕКЦИЯ С ИГРОЙ ======= -->
     <section class="game-section" id="game">
       <div class="game-header">
         <h2>Моя игра — Survival Craft</h2>
@@ -1084,14 +1076,9 @@
               <strong>↑ ↓ ← →</strong> — движение<br />
               <strong>Зажать ЛКМ</strong> — добыча / атака
             </div>
-            <div class="game-links">
-              <a href="https://bagdychgeronin-code.github.io/Game/" target="_blank" class="game-link">
-                🎮 Играть
-              </a>
-              <a href="https://t.me/PortfoliobogdanTest_bot" target="_blank" class="game-link bot-link">
-                🤖 Мой бот в Telegram
-              </a>
-            </div>
+            <a href="https://bagdychgeronin-code.github.io/Game/" target="_blank" class="game-link">
+              🎮 Играть
+            </a>
           </div>
         </div>
       </div>
@@ -1122,6 +1109,9 @@
       <div class="contact-links">
         <a href="https://www.tiktok.com/@26main10?_r=1&_t=ZS-97pa9X3ahwi" target="_blank"><span class="emoji">📱</span> TikTok</a>
         <a href="https://youtube.com/@bestik-name?si=tnrD1BfE1WzpWiIR" target="_blank"><span class="emoji">▶️</span> YouTube</a>
+        <a href="https://t.me/PortfoliobogdanTest_bot" target="_blank" class="bot-link">
+          🤖 Мой Telegram-бот
+        </a>
       </div>
     </section>
 
