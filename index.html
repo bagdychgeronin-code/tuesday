@@ -668,19 +668,6 @@
       color:var(--text-primary);
       transition:color 0.4s ease;
     }
-    .game-card .game-info .game-stats {
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.8rem 1.5rem;
-      font-size:1rem;
-      color:var(--text-muted);
-    }
-    .game-card .game-info .game-stats span {
-      background:var(--border-light);
-      padding:0.2rem 1rem;
-      border-radius:30px;
-      transition:background 0.3s ease, color 0.3s ease;
-    }
     .game-card .game-info .game-desc {
       font-size:1.1rem;
       line-height:1.5;
@@ -701,6 +688,12 @@
       color:var(--text-primary);
       transition:color 0.4s ease;
     }
+    .game-card .game-links {
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      margin-top:0.5rem;
+    }
     .game-card .game-link {
       display:inline-flex;
       align-items:center;
@@ -714,13 +707,28 @@
       font-size:1.2rem;
       transition:transform 0.2s, box-shadow 0.2s;
       box-shadow:0 4px 16px rgba(124,140,248,0.3);
-      align-self:flex-start;
       border:none;
       cursor:pointer;
     }
     .game-card .game-link:hover {
       transform:scale(1.04);
       box-shadow:0 8px 28px rgba(124,140,248,0.4);
+    }
+    .game-card .bot-link {
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 4px 16px rgba(0,0,0,0.05);
+    }
+    .game-card .bot-link:hover {
+      background:rgba(255,255,255,0.15);
+      box-shadow:0 8px 24px rgba(0,0,0,0.1);
+    }
+    body.dark-theme .game-card .bot-link {
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(255,255,255,0.05);
+    }
+    body.dark-theme .game-card .bot-link:hover {
+      background:rgba(255,255,255,0.12);
     }
 
     /* ----- контакты ----- */
@@ -849,6 +857,7 @@
       .level-helper .trigger { font-size:0.8rem; padding:0.5rem 1rem; }
       .helper-arrow.show { width: 140px; }
       .contact-details .item { font-size:1rem; padding:0.6rem 1.2rem; }
+      .game-card .game-links { flex-direction:column; align-items:stretch; }
     }
     @media (max-width:768px) {
       .intro-section { padding:2rem 1.5rem; min-height:70vh; }
@@ -878,6 +887,7 @@
       .game-card .game-info .game-controls { font-size:0.85rem; padding:0.8rem 1rem; }
       .level-helper { display:none; }
       .contact-details .item { font-size:0.9rem; padding:0.5rem 1rem; }
+      .game-card .game-links .game-link { font-size:1rem; padding:0.7rem 1.5rem; }
     }
     @media (max-width:480px) {
       .intro-text h1 { font-size:2.4rem; }
@@ -889,7 +899,7 @@
       .slider-wrapper::before, .slider-wrapper::after,
       .portfolio-content::before, .portfolio-content::after { width:10px; }
       .toast-notification { font-size:0.85rem; padding:0.7rem 1.2rem; max-width:90%; }
-      .stars, .game-card .game-info .game-stats { font-size:1.4rem; }
+      .stars { font-size:1.4rem; }
     }
   </style>
 </head>
@@ -1066,26 +1076,22 @@
           </div>
           <div class="game-info">
             <h3>Выживай, строй, защищайся!</h3>
-            <div class="game-stats">
-              <span>❤️ 100/100</span>
-              <span>15W</span>
-              <span>30W 10S</span>
-              <span>25W</span>
-              <span>40W 20S</span>
-            </div>
             <div class="game-desc">
               «Survival Craft» — это игра на выживание, где вам предстоит добывать ресурсы, строить стены и защищать свою базу от врагов. Проект создан в рамках изучения гейм-дизайна и программирования.
             </div>
             <div class="game-controls">
               <strong>Управление:</strong><br />
-              <strong>WASD</strong> — движение<br />
-              <strong>Зажать ЛКМ</strong> — добыча / атака<br />
-              <strong>ПКМ (с выбором стены)</strong> — построить<br />
-              <strong>5</strong> — выбрать стену
+              <strong>↑ ↓ ← →</strong> — движение<br />
+              <strong>Зажать ЛКМ</strong> — добыча / атака
             </div>
-            <a href="https://bagdychgeronin-code.github.io/Game/" target="_blank" class="game-link">
-              🎮 Играть
-            </a>
+            <div class="game-links">
+              <a href="https://bagdychgeronin-code.github.io/Game/" target="_blank" class="game-link">
+                🎮 Играть
+              </a>
+              <a href="https://t.me/PortfoliobogdanTest_bot" target="_blank" class="game-link bot-link">
+                🤖 Мой бот в Telegram
+              </a>
+            </div>
           </div>
         </div>
       </div>
