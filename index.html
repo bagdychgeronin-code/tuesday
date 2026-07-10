@@ -34,6 +34,9 @@
       --helper-bg: rgba(255,255,255,0.95);
       --helper-text: #1c1c26;
       --helper-width: 280px;
+      --player-bg: rgba(255,255,255,0.85);
+      --player-border: rgba(0,0,0,0.05);
+      --player-text: #1c1c26;
     }
     body.dark-theme {
       --bg-body: #0a1128;
@@ -60,6 +63,9 @@
       --helper-bg: rgba(30,40,80,0.95);
       --helper-text: #e8edf5;
       --helper-width: 280px;
+      --player-bg: rgba(20,35,75,0.85);
+      --player-border: rgba(255,255,255,0.08);
+      --player-text: #e8edf5;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html,body {
@@ -74,6 +80,7 @@
                         radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.15), transparent 50%);
       background-size: 200% 200%, 200% 200%, 100% 100%;
       animation: bgGradient 12s ease-in-out infinite alternate;
+      padding-bottom: 80px; /* чтобы контент не перекрывался плеером */
     }
     @keyframes bgGradient {
       0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
@@ -889,6 +896,164 @@
     }
     .copy-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
+    /* ===== АУДИОПЛЕЕР (фиксированный снизу) ===== */
+    .audio-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--player-bg);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--player-border);
+      padding: 0.6rem 1.5rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      transition: background 0.4s ease, border-color 0.4s ease;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+    }
+    .audio-player .track-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex: 0 1 auto;
+      min-width: 150px;
+    }
+    .audio-player .track-info .cover {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gradient-start);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .audio-player .track-info .title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--player-text);
+      transition: color 0.4s ease;
+      white-space: nowrap;
+    }
+    .audio-player .track-info .artist {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      transition: color 0.4s ease;
+    }
+    .audio-player .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex: 0 1 auto;
+    }
+    .audio-player .controls button {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--player-text);
+      transition: transform 0.2s, color 0.2s;
+      padding: 0.2rem 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .audio-player .controls button:hover {
+      transform: scale(1.1);
+      color: var(--gradient-start);
+    }
+    .audio-player .progress-area {
+      flex: 1 1 200px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 120px;
+    }
+    .audio-player .progress-area input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--border-light);
+      outline: none;
+      transition: background 0.3s;
+    }
+    .audio-player .progress-area input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gradient-start);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(124,140,248,0.3);
+      transition: transform 0.2s;
+    }
+    .audio-player .progress-area input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    .audio-player .progress-area input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gradient-start);
+      cursor: pointer;
+      border: none;
+    }
+    .audio-player .progress-area .time {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      min-width: 40px;
+      transition: color 0.4s ease;
+      font-variant-numeric: tabular-nums;
+    }
+    .audio-player .volume-area {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex: 0 1 120px;
+      min-width: 80px;
+    }
+    .audio-player .volume-area .vol-icon {
+      font-size: 1.2rem;
+      color: var(--player-text);
+      transition: color 0.4s ease;
+    }
+    .audio-player .volume-area input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--border-light);
+      outline: none;
+      transition: background 0.3s;
+    }
+    .audio-player .volume-area input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gradient-start);
+      cursor: pointer;
+    }
+    .audio-player .volume-area input[type="range"]::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gradient-start);
+      cursor: pointer;
+      border: none;
+    }
+
     body::after {
       content:''; position:fixed; bottom:0; left:0; width:100%; height:80px;
       pointer-events:none;
@@ -936,6 +1101,9 @@
       .helper-arrow.show { width: 140px; }
       .contact-details .item { font-size:1rem; padding:0.6rem 1.2rem; }
       .bot-card { flex:1 1 100%; }
+      .audio-player { padding:0.5rem 1rem; gap:0.8rem; }
+      .audio-player .track-info .title { font-size:0.8rem; }
+      .audio-player .controls button { font-size:1.3rem; }
     }
     @media (max-width:768px) {
       .intro-section { padding:2rem 1.5rem; min-height:70vh; }
@@ -965,6 +1133,13 @@
       .game-card .game-info .game-controls { font-size:0.85rem; padding:0.8rem 1rem; }
       .level-helper { display:none; }
       .contact-details .item { font-size:0.9rem; padding:0.5rem 1rem; }
+      .audio-player { padding:0.4rem 0.8rem; gap:0.5rem; flex-wrap:nowrap; overflow-x:auto; }
+      .audio-player .track-info .cover { width:36px; height:36px; font-size:1.1rem; }
+      .audio-player .track-info .title { font-size:0.7rem; }
+      .audio-player .controls button { font-size:1.2rem; }
+      .audio-player .volume-area { flex:0 0 70px; min-width:50px; }
+      .audio-player .progress-area { flex:1; min-width:60px; }
+      .audio-player .progress-area .time { font-size:0.65rem; min-width:30px; }
     }
     @media (max-width:480px) {
       .intro-text h1 { font-size:2.4rem; }
@@ -978,6 +1153,8 @@
       .toast-notification { font-size:0.85rem; padding:0.7rem 1.2rem; max-width:90%; }
       .stars { font-size:1.4rem; }
       .bot-card .bot-link { font-size:1rem; padding:0.7rem 1.5rem; }
+      .audio-player .track-info .title { font-size:0.65rem; }
+      .audio-player .controls button { font-size:1rem; }
     }
   </style>
 </head>
@@ -1170,13 +1347,12 @@
       </div>
     </section>
 
-    <!-- ======= НОВАЯ СЕКЦИЯ: МОИ TELEGRAM-БОТЫ ======= -->
+    <!-- ======= СЕКЦИЯ: МОИ TELEGRAM-БОТЫ ======= -->
     <section class="bots-section" id="bots">
       <div class="bots-header">
         <h2>Мои Telegram-боты</h2>
       </div>
       <div class="bots-grid">
-        <!-- Карточка бота 1 -->
         <div class="bot-card">
           <div class="bot-icon">🎨</div>
           <div class="bot-name">Дизайн-помощник</div>
@@ -1187,7 +1363,6 @@
             🤖 Перейти в бота
           </a>
         </div>
-        <!-- Карточка бота 2 -->
         <div class="bot-card">
           <div class="bot-icon">📰</div>
           <div class="bot-name">Design & Fashion</div>
@@ -1229,6 +1404,29 @@
       </div>
     </section>
 
+  </div>
+
+  <!-- ======= АУДИОПЛЕЕР (фиксированный снизу) ======= -->
+  <div class="audio-player" id="audioPlayer">
+    <div class="track-info">
+      <div class="cover">🎵</div>
+      <div>
+        <div class="title">Неон и грязь</div>
+        <div class="artist">Bogdan</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="playBtn" title="Воспроизвести/Пауза">▶</button>
+    </div>
+    <div class="progress-area">
+      <span class="time" id="currentTime">0:00</span>
+      <input type="range" id="progressBar" min="0" max="100" value="0" />
+      <span class="time" id="durationTime">0:00</span>
+    </div>
+    <div class="volume-area">
+      <span class="vol-icon" id="volIcon">🔊</span>
+      <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8" />
+    </div>
   </div>
 
   <!-- уведомление о копировании -->
@@ -1527,6 +1725,105 @@
         const defaultTab = document.querySelector('.tab-btn[data-category="graphic"]');
         if (defaultTab) defaultTab.classList.add('active');
       }
+
+      // ===== 9. АУДИОПЛЕЕР =====
+      const audio = new Audio('MySong.mp3'); // Убедитесь, что файл лежит в корне
+      const playBtn = document.getElementById('playBtn');
+      const progressBar = document.getElementById('progressBar');
+      const currentTimeEl = document.getElementById('currentTime');
+      const durationTimeEl = document.getElementById('durationTime');
+      const volumeBar = document.getElementById('volumeBar');
+      const volIcon = document.getElementById('volIcon');
+
+      let isPlaying = false;
+
+      // Форматирование времени
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Обновление прогресса
+      function updateProgress() {
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressBar.value = percent;
+          currentTimeEl.textContent = formatTime(audio.currentTime);
+          durationTimeEl.textContent = formatTime(audio.duration);
+        }
+      }
+
+      // Загрузка метаданных
+      audio.addEventListener('loadedmetadata', () => {
+        durationTimeEl.textContent = formatTime(audio.duration);
+        progressBar.max = 100;
+      });
+
+      // Обновление при воспроизведении
+      audio.addEventListener('timeupdate', updateProgress);
+
+      // Завершение трека
+      audio.addEventListener('ended', () => {
+        isPlaying = false;
+        playBtn.textContent = '▶';
+        progressBar.value = 0;
+        currentTimeEl.textContent = '0:00';
+        // Можно перемотать в начало
+        audio.currentTime = 0;
+      });
+
+      // Воспроизведение/пауза
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(err => console.warn('Playback error:', err));
+          playBtn.textContent = '⏸';
+          isPlaying = true;
+        } else {
+          audio.pause();
+          playBtn.textContent = '▶';
+          isPlaying = false;
+        }
+      });
+
+      // Перемотка по прогрессу
+      progressBar.addEventListener('input', function() {
+        if (audio.duration) {
+          const seekTime = (this.value / 100) * audio.duration;
+          audio.currentTime = seekTime;
+          currentTimeEl.textContent = formatTime(seekTime);
+        }
+      });
+
+      // Регулировка громкости
+      volumeBar.addEventListener('input', function() {
+        audio.volume = this.value;
+        updateVolumeIcon(this.value);
+      });
+
+      function updateVolumeIcon(val) {
+        if (val == 0) volIcon.textContent = '🔇';
+        else if (val < 0.5) volIcon.textContent = '🔉';
+        else volIcon.textContent = '🔊';
+      }
+
+      // Инициализация громкости
+      audio.volume = volumeBar.value;
+      updateVolumeIcon(volumeBar.value);
+
+      // Клик по иконке громкости для отключения/включения
+      volIcon.addEventListener('click', function() {
+        if (audio.volume > 0) {
+          audio.volume = 0;
+          volumeBar.value = 0;
+          volIcon.textContent = '🔇';
+        } else {
+          audio.volume = 0.8;
+          volumeBar.value = 0.8;
+          volIcon.textContent = '🔊';
+        }
+      });
 
     })();
   </script>
